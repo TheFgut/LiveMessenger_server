@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  livemessengerapi:
+    image: thefgut/livemessenger_api
+    build:
+      context: .
+      dockerfile: LiveMessengerApi/Dockerfile
+    ports:
+      - "8080:8080"
+      - "443:443"
+    environment:
+      - CASSANDRA_HOST=0.0.0.0
+      - CASSANDRA_PORT=9042
+    depends_on:
+      - cassandra
+
+
+  cassandra:
+    image: thefgut/livemessenger_cassandra_db
+    ports:
+      - "32772:7000"
+      - "32771:7001"
+      - "32770:7199"
+      - "9042:9042"
+      - "32768:9160"
+    environment:
+      CASSANDRA_START_RPC: "true"
+      CASSANDRA_RPC_ADDRESS: "0.0.0.0"
+
+    stdin_open: true
+    tty: true
