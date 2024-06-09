@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   livemessengerapi:
-    image: thefgut/livemessenger_api
+    image: thefgut/livemessenger_api:dev
     build:
       context: .
       dockerfile: LiveMessengerApi/Dockerfile
@@ -17,7 +17,7 @@ services:
 
 
   cassandra:
-    image: thefgut/livemessenger_cassandra_db
+    image: thefgut/livemessenger_cassandra_db:latest
     ports:
       - "32772:7000"
       - "32771:7001"
