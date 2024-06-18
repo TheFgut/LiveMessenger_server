@@ -1,7 +1,15 @@
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.WebHost.UseUrls("http://*:8080");
+//builder.WebHost.UseUrls("http://*:8080");
+
+builder.WebHost.UseKestrel(options =>
+{
+    options.ListenAnyIP(80); // Слушаем на всех IP-адресах на порту 80
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -16,9 +24,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-
-app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
