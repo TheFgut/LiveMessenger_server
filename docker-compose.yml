@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   livemessengerapi:
-    image: thefgut/livemessenger_api:dev
+    image: livemessenger_api:latest
     build:
       context: .
       dockerfile: LiveMessengerApi/Dockerfile
@@ -15,15 +15,14 @@ services:
     depends_on:
       - cassandra
 
-
   cassandra:
     image: thefgut/livemessenger_cassandra_db:latest
     ports:
-      - "32772:7000"
-      - "32771:7001"
-      - "32770:7199"
+      - "7000:7000"
+      - "7001:7001"
+      - "7199:7199"
       - "9042:9042"
-      - "32768:9160"
+      - "9160:9160"
     environment:
       CASSANDRA_START_RPC: "true"
       CASSANDRA_RPC_ADDRESS: "0.0.0.0"
