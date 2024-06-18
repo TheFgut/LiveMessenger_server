@@ -14,7 +14,6 @@ namespace LiveMessengerApi
         public void Configure(IApplicationBuilder app)
         {
 
-            app.UseHttpsRedirection();
             app.UseRouting();
             app.UseAuthorization();
 
