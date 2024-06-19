@@ -7,8 +7,7 @@ services:
       context: .
       dockerfile: LiveMessengerApi/Dockerfile
     ports:
-      - "8080:8080"
-      - "443:443"
+      - "80:80"
     environment:
       - CASSANDRA_HOST=cassandra
       - CASSANDRA_PORT=9042
